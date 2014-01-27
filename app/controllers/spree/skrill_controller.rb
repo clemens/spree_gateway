@@ -9,9 +9,9 @@ module Spree
 
       options = {
         :transaction_id => payment.identifier,
-        :return_url     => skrill_return_order_checkout_url(:payment_id => payment),
-        :cancel_url     => skrill_cancel_order_checkout_url,
-        :status_url     => skrill_update_status_url,
+        :return_url     => skrill_return_order_checkout_url(:payment_id => payment, :token => order.token),
+        :cancel_url     => skrill_cancel_order_checkout_url(:token => order.token),
+        :status_url     => skrill_update_status_url(:token => order.token),
       }
 
       redirect_to payment_method.redirect_url(order, options)
