@@ -1,10 +1,12 @@
 module Spree
   class BillingIntegration::Skrill::QuickCheckout < BillingIntegration
     preference :merchant_id,     :string
+    preference :secret_word,     :string
     preference :language,        :string, :default => 'EN' # TODO use something based on I18n.locale?
     preference :payment_options, :string, :default => 'ACC' # ACC = all card types; see Merchant Integration Manual for acceptable codes
 
-    attr_accessible :preferred_merchant_id, :preferred_language, :preferred_payment_options
+    attr_accessible :preferred_merchant_id, :preferred_secret_word,
+                    :preferred_language, :preferred_payment_options
 
     def provider_class
       ActiveMerchant::Billing::Skrill

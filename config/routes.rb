@@ -1,13 +1,6 @@
 Spree::Core::Engine.routes.draw do
-  # Add your extension routes here
-  resources :orders do
-    resource :checkout, :controller => 'checkout' do
-      member do
-        get :skrill_cancel
-        get :skrill_return
-      end
-    end
-  end
-
-  match '/skrill' => 'skrill_status#update', :via => :post, :as => :skrill_status_update
+  get  '/skrill/pay'           => 'skrill#pay',           :as => :pay_skrill
+  get  '/skrill/confirm'       => 'skrill#confirm',       :as => :confirm_skrill
+  post '/skrill/update_status' => 'skrill#update_status', :as => :update_skrill_status
+  get  '/skrill/cancel'        => 'skrill#cancel',        :as => :cancel_skrill
 end
