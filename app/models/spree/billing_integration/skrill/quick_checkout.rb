@@ -52,7 +52,7 @@ module Spree
 
       # other
       options.reverse_merge!(
-        :merchant_fields       => 'platform,order_id,payment_method_id',
+        :merchant_fields       => 'platform,order_id',
         :platform              => 'Spree'
       )
 
