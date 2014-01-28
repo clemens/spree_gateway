@@ -30,17 +30,17 @@ module Spree
 
       # order details
       options.reverse_merge!(
-        :pay_from_email        => order.email,
-        :firstname             => order.bill_address.firstname,
-        :lastname              => order.bill_address.lastname,
-        :address               => order.bill_address.address1,
-        :address2              => order.bill_address.address2,
-        :phone_number          => order.bill_address.phone.gsub(/\D/,'') if order.bill_address.phone.present?, # only numeric values are accepted!
-        :city                  => order.bill_address.city,
-        :postal_code           => order.bill_address.zipcode,
-        :state                 => order.bill_address.state.try(:abbr) || order.bill_address.state_name.to_s,
-        :country               => order.bill_address.country.name
+        :pay_from_email => order.email,
+        :firstname      => order.bill_address.firstname,
+        :lastname       => order.bill_address.lastname,
+        :address        => order.bill_address.address1,
+        :address2       => order.bill_address.address2,
+        :city           => order.bill_address.city,
+        :postal_code    => order.bill_address.zipcode,
+        :state          => order.bill_address.state.try(:abbr) || order.bill_address.state_name.to_s,
+        :country        => order.bill_address.country.name
       )
+      options.reverse_merge!(:phone_number => order.bill_address.phone.gsub(/\D/,'')) if order.bill_address.phone.present? # only numeric values are accepted!
 
       # visual stuff
       options.reverse_merge!(
